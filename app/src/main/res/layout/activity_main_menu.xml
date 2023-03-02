@@ -4,6 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainMenu">
+    tools:context=".MainMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/portada"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Modos de Juego"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:textStyle="bold"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="Modo Clásico"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="Modo Retos"/>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="Modo Rondas"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
