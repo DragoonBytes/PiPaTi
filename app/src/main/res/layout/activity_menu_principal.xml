@@ -12,11 +12,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imagenPortada"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center"/>
         <TextView
             android:id="@+id/textoTitulo"
             android:layout_width="400dp"
@@ -26,6 +21,11 @@
             android:textAlignment="center"
             android:textSize="40dp"
             android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/imagenPortada"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"/>
         <Button
             android:id="@+id/botonJugar"
             android:layout_width="300dp"
