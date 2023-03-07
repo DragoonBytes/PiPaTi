@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenu">
+    tools:context=".ModoJuego">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,11 +13,12 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/portada"
+            android:id="@+id/imagenPortada"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/textoModoJuego"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -26,16 +27,19 @@
             android:textSize="40dp"
             android:textStyle="bold"/>
         <Button
+            android:id="@+id/botonModoClasico"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             tools:text="Modo Clásico"/>
         <Button
+            android:id="@+id/botonModoRetos"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             tools:text="Modo Retos"/>
         <Button
+            android:id="@+id/botonModoRondas"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"

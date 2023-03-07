@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Registro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,6 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginVertical="10dp"
                     tools:text="Escribe tu correo"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -52,11 +51,24 @@
                 android:gravity="center">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputContrasenia"
+                    android:id="@+id/textInputContrasenia1"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_marginVertical="10dp"
                     tools:text="Contraseña"></com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputContrasenia2"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="Repetir contraseña"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -72,7 +84,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="iniciar sesión"/>
+                tools:text="Registrarse"></Button>
         </LinearLayout>
 
         <TextView
@@ -80,7 +92,7 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="¿No tienes cuenta?"
+            android:text="¿Ya tienes cuenta?"
             android:textAlignment="center" />
 
         <TextView
@@ -88,7 +100,7 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Registrate aquí"
+            android:text="Inicia sesión aquí"
             android:textAlignment="center" />
 
     </LinearLayout>

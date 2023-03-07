@@ -28,11 +28,13 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imagenJugador1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"/>
 
             <ImageView
+                android:id="@+id/imagenJugador2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"/>
@@ -45,21 +47,24 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/botonPiedra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Botón 1"
+                android:text="Piedra"
                 android:layout_marginRight="10dp"/>
 
             <Button
+                android:id="@+id/botonPapel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Botón 2"
+                android:text="Papel"
                 android:layout_marginRight="10dp"/>
 
             <Button
+                android:id="@+id/botonTijera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Botón 3"/>
+                android:text="Tijera"/>
 
         </LinearLayout>
 
