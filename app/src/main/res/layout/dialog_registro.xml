@@ -1,108 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Registro">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/edit_username"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario" />
 
-        <TextView
-            android:id="@+id/textoTitulo"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="PiPaTi"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:textStyle="bold"/>
-
-        <ImageView
-            android:id="@+id/ImagenPortada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputUsuario"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    tools:text="Escribe tu correo"></com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputContrasenia1"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginVertical="10dp"
-                    tools:text="Contraseña"></com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputContrasenia2"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    tools:text="Repetir contraseña"></com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginVertical="20dp">
-
-            <Button
-                android:id="@+id/botonLogin"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="Registrarse"></Button>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textNoCuenta"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="¿Ya tienes cuenta?"
-            android:textAlignment="center" />
-
-        <TextView
-            android:id="@+id/textEnlaceRegistro"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Inicia sesión aquí"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/edit_password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword" />
+</LinearLayout>

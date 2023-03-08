@@ -27,23 +27,17 @@
             android:textSize="40dp"
             android:textStyle="bold"/>
         <Button
-            android:id="@+id/botonModoClasico"
+            android:id="@+id/btnModoClasico"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             tools:text="Modo Clásico"/>
         <Button
-            android:id="@+id/botonModoRetos"
+            android:id="@+id/btnModoRetos"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             tools:text="Modo Retos"/>
-        <Button
-            android:id="@+id/botonModoRondas"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:text="Modo Rondas"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
