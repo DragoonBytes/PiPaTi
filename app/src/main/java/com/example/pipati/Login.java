@@ -94,7 +94,7 @@ public class Login extends AppCompatActivity {
         Cursor cursor = db.rawQuery(query, new String[]{nomUser, pass});
         boolean result = cursor.moveToFirst();
         cursor.close();
-        db.close();
+        //db.close();
         return result;
     }
 
