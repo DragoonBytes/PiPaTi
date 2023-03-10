@@ -25,7 +25,7 @@ public class Historico extends AppCompatActivity {
         listView = findViewById(R.id.list_historico);
         DBManager dbHelper = new DBManager(this);
         db = dbHelper.getWritableDatabase();
-        String[] columnas = {"player1", "scoreP1", "player2", "scoreP2"};
+        String[] columnas = {"_id", "player1", "scoreP1", "player2", "scoreP2"};
         Cursor cursor = db.query("games", columnas, null, null, null, null, null);
         cursorAdapter = new MiAdaptador(
                 Historico.this,
