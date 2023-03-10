@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBManager extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "PiPaTiDB.db";
-    private static int DATABASE_VERSION = 2;
+    private static int DATABASE_VERSION = 1;
 
     public DBManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

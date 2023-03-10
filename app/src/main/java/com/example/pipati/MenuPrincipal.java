@@ -32,7 +32,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnHistorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuPrincipal.this, Historial.class);
+                Intent intent = new Intent(MenuPrincipal.this, Historico.class);
                 startActivity(intent);
                 finish();
             }
