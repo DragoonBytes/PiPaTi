@@ -140,7 +140,7 @@ public class Partida extends AppCompatActivity {
     }
 
     public void endGame(){
-        if (nGames == 3 || p1Score == 2 || p2Score == 3){
+        if (nGames == 3 || p1Score == 2 || p2Score == 2){
             String query = "INSERT INTO games(player1, scoreP1, player2, ScoreP2) VALUES(?, ?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
             statement.bindString(1, nameP1.getText().toString());

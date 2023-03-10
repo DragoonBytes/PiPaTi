@@ -31,13 +31,13 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Modo Clásico"/>
+            android:text="Modo Clásico"/>
         <Button
             android:id="@+id/btnModoRetos"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Modo Retos"/>
+            android:text="Modo Retos"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

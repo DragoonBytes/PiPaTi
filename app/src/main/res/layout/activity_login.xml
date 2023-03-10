@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginVertical="10dp"
-                    tools:text="Escribe tu correo"></com.google.android.material.textfield.TextInputEditText>
+                    android:hint="Escribe tu correo"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    tools:text="Contraseña"></com.google.android.material.textfield.TextInputEditText>
+                    android:hint="Contraseña"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -67,13 +67,13 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="iniciar sesión"/>
+                android:text="iniciar sesión"/>
             <Button
                 android:id="@+id/btnRegistro"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="registrarse"/>
+                android:text="registrarse"/>
         </LinearLayout>
 
 

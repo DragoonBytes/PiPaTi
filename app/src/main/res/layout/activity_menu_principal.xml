@@ -31,19 +31,19 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Jugar"/>
+            android:text="Jugar"/>
         <Button
             android:id="@+id/botonHistorial"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Historial"/>
+            android:text="Historial"/>
         <Button
             android:id="@+id/botonAjustes"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Ajustes"/>
+            android:text="Ajustes"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
