@@ -9,10 +9,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class ModoJuego extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     Button btnClassicMode, btnChallengeMode;
+    ImageButton btnBack;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -20,10 +22,14 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modo_juego);
 
-        PreferenceManager.setDefaultValues(ModoJuego.this, R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         btnClassicMode = (Button) findViewById(R.id.btnModoClasico);
         btnChallengeMode = (Button) findViewById(R.id.btnModoRetos);
+
+        btnBack = (ImageButton) findViewById(R.id.modoJuegoFlechaAtras);
 
         btnClassicMode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +47,16 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
                 finish();
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ModoJuego.this, MenuPrincipal.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         cargarPreferencias();
     }
     private void cargarPreferencias(){

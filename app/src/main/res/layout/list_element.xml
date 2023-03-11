@@ -4,31 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center">
-
-    <TextView
-        android:id="@+id/histP1Name"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="P1 name"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
-    <TextView
-        android:id="@+id/histP1Score"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="P1 Score"
-        android:layout_marginRight="10dp"/>
-    <TextView
-        android:id="@+id/histP2Name"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="P2 name"
-        android:layout_marginRight="10dp"/>
-    <TextView
-        android:id="@+id/histP2Score"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="P1 Score"
-        android:layout_marginRight="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:background="@drawable/layout_border">
+        <TextView
+            android:id="@+id/histP1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="P1 name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:id="@+id/histP1Score"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="P1 Score"
+            android:textSize="20dp"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:id="@+id/histP2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="P2 name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:id="@+id/histP2Score"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="P1 Score"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -7,14 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".Historico">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imagenPortada"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/oso"/>
+    </FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/historicoFlechaAtras"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/flecha"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
         <ListView
             android:id="@+id/list_historico"
+            android:layout_marginTop="80dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </RelativeLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

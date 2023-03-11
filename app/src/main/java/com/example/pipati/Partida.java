@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +19,10 @@ import java.util.Random;
 public class Partida extends AppCompatActivity {
 
     SQLiteDatabase db;
-    Button btnPiedra, btnPapel, btnTijeras;
+    ImageView imgP1, imgP2;
+    ImageButton btnPiedra, btnPapel, btnTijeras;
     TextView tvScoreP1, tvScoreP2, nameP1, nameP2;
-    int p1Score, p2Score, nGames, result = 0;
+    int p1Score, p2Score, nGames = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,12 @@ public class Partida extends AppCompatActivity {
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();
 
-        btnPiedra = (Button) findViewById(R.id.btnPiedra);
-        btnPapel = (Button) findViewById(R.id.btnPapel);
-        btnTijeras = (Button) findViewById(R.id.btnTijeras);
+        imgP1 = (ImageView) findViewById(R.id.imagenJugador1);
+        imgP2 = (ImageView) findViewById(R.id.imagenJugador2);
+
+        btnPiedra = (ImageButton) findViewById(R.id.btnPiedra);
+        btnPapel = (ImageButton) findViewById(R.id.btnPapel);
+        btnTijeras = (ImageButton) findViewById(R.id.btnTijeras);
 
         tvScoreP1 = (TextView) findViewById(R.id.scoreJugador1);
         tvScoreP2 = (TextView) findViewById(R.id.scoreJugador2);
@@ -46,6 +52,7 @@ public class Partida extends AppCompatActivity {
         btnPiedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                imgP1.setImageResource(R.drawable.piedra);
                 int player1 = 1;
                 int player2 = random.nextInt(2) + 1;
                 int result = checkResults(player1, player2);
@@ -55,6 +62,7 @@ public class Partida extends AppCompatActivity {
         btnPapel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                imgP1.setImageResource(R.drawable.papel);
                 int player1 = 2;
                 int player2 = random.nextInt(2) + 1;
                 int result = checkResults(player1, player2);
@@ -64,9 +72,10 @@ public class Partida extends AppCompatActivity {
         btnTijeras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                imgP1.setImageResource(R.drawable.tijera);
                 int player1 = 3;
                 int player2 = random.nextInt(2) + 1;
-                result = checkResults(player1, player2);
+                int result = checkResults(player1, player2);
                 results(result);
 
             }
@@ -74,46 +83,49 @@ public class Partida extends AppCompatActivity {
     }
 
     public int checkResults(int player1, int player2) {
-        result = 0;
+        int result = 0;
         switch(player1) {
             case 1:
                 // El jugador ha elegido piedra
                 switch (player2) {
                     case 1:
-                        result = 2;
-                        break;
+                        imgP2.setImageResource(R.drawable.piedra);
+                        return result = 2;
                     case 2:
-                        result = 0;
-                        break;
+                        imgP2.setImageResource(R.drawable.papel);
+                        return result = 0;
                     case 3:
-                        result = 1;
-                        break;
+                        imgP2.setImageResource(R.drawable.tijera);
+                        return result = 1;
+
                 }
             case 2:
                 // El jugador ha elegido papel
                 switch (player2) {
                     case 1:
-                        result = 1;
-                        break;
+                        imgP2.setImageResource(R.drawable.piedra);
+                        return result = 1;
+
                     case 2:
-                        result = 2;
-                        break;
+                        imgP2.setImageResource(R.drawable.papel);
+                        return result = 2;
+
                     case 3:
-                        result = 0;
-                        break;
+                        imgP2.setImageResource(R.drawable.tijera);
+                        return result = 0;
                 }
             case 3:
                 // El jugador ha elegido tijera
                 switch (player2) {
                     case 1:
-                        result = 0;
-                        break;
+                        imgP2.setImageResource(R.drawable.piedra);
+                        return result = 0;
                     case 2:
-                        result = 1;
-                        break;
+                        imgP2.setImageResource(R.drawable.papel);
+                        return result = 1;
                     case 3:
-                        result = 2;
-                        break;
+                        imgP2.setImageResource(R.drawable.tijera);
+                        return result = 2;
                 }
         }
         return result;

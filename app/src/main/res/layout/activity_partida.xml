@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Partida">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgFondoModoJuego"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/oso"/>
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,18 +57,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/imagenJugador1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/interrogacion"
+                android:scaleType="centerCrop"
                 android:gravity="center"/>
             <ImageView
                 android:id="@+id/imagenJugador2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/interrogacion"
+                android:scaleType="centerCrop"
+
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -85,25 +103,31 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
-            <Button
+            <ImageButton
                 android:id="@+id/btnPiedra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:text="Piedra"
+                android:src="@drawable/piedra"
                 android:layout_marginRight="10dp"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnPapel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:text="Papel"
+                android:src="@drawable/papel"
                 android:layout_marginRight="10dp"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnTijeras"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tijera"/>
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:text="Tijera"
+                android:src="@drawable/tijera"/>
         </LinearLayout>
 
     </LinearLayout>

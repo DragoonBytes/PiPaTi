@@ -9,10 +9,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MenuPrincipal extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     Button btnJugar, btnHistorial, btnAjustes;
+    ImageButton btnBack;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -21,10 +23,14 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
         setContentView(R.layout.activity_menu_principal);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         btnJugar = (Button) findViewById(R.id.botonJugar);
         btnHistorial = (Button) findViewById(R.id.botonHistorial);
         btnAjustes = (Button) findViewById(R.id.botonAjustes);
+
+        btnBack = (ImageButton) findViewById(R.id.menuPrincipalFlechaAtras);
 
         btnJugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +58,16 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
                 finish();
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuPrincipal.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         cargarPreferencias();
     }
     private void cargarPreferencias(){
