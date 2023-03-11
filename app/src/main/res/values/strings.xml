@@ -16,16 +16,4 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-
-    <string-array name="opcion_3_entries">
-        <item>Opción 3 - Valor 1</item>
-        <item>Opción 3 - Valor 2</item>
-        <item>Opción 3 - Valor 3</item>
-    </string-array>
-
-    <string-array name="opcion_3_values">
-        <item>opcion_3_1</item>
-        <item>opcion_3_2</item>
-        <item>opcion_3_3</item>
-    </string-array>
 </resources>

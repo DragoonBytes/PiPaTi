@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="button_colors">
+        <item>Azul</item>
+        <item>Verde</item>
+        <item>Amarillo</item>
+        <item>Rojo</item>
+    </string-array>
+
+    <string-array name="button_colors_values">
+        <item>#1089DA</item>
+        <item>#50B650</item>
+        <item>#F3C66C</item>
+        <item>#F46666</item>
+    </string-array>
+</resources>

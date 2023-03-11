@@ -1,21 +1,26 @@
 package com.example.pipati;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
 import android.widget.Button;
 
-public class MenuPrincipal extends AppCompatActivity {
+public class MenuPrincipal extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     Button btnJugar, btnHistorial, btnAjustes;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         btnJugar = (Button) findViewById(R.id.botonJugar);
         btnHistorial = (Button) findViewById(R.id.botonHistorial);
@@ -47,5 +52,32 @@ public class MenuPrincipal extends AppCompatActivity {
                 finish();
             }
         });
+        cargarPreferencias();
+    }
+    private void cargarPreferencias(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuPrincipal.this);
+        String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
+        btnJugar.setBackgroundColor(Color.parseColor(colorValue));
+        btnHistorial.setBackgroundColor(Color.parseColor(colorValue));
+        btnAjustes.setBackgroundColor(Color.parseColor(colorValue));
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("button_color")) {
+            // Obtener el nuevo color de los botones
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuPrincipal.this);
+            String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
+            btnJugar.setBackgroundColor(Color.parseColor(colorValue));
+            btnHistorial.setBackgroundColor(Color.parseColor(colorValue));
+            btnAjustes.setBackgroundColor(Color.parseColor(colorValue));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Desregistrar el listener
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 }

@@ -51,6 +51,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:inputType="textPassword"
                     android:hint="Contraseña"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 

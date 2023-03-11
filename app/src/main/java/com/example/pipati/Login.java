@@ -1,13 +1,16 @@
 package com.example.pipati;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,17 +20,22 @@ import android.widget.Toast;
 import java.sql.PreparedStatement;
 import java.sql.SQLData;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     SQLiteDatabase db;
     AlertDialog dialogRegistro;
     Button btnLogin, btnRegistro;
     EditText editTextUser, editTextPass;
+    SharedPreferences sharedPreferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();
@@ -88,6 +96,7 @@ public class Login extends AppCompatActivity {
             }
 
         });
+        cargarPreferencias();
     }
     public boolean checkLogin(String nomUser, String pass) {
         String query = "SELECT * FROM users WHERE nomUser = ? AND pass = ?";
@@ -106,4 +115,28 @@ public class Login extends AppCompatActivity {
         return result;
     }
 
+    private void cargarPreferencias(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
+        btnLogin.setBackgroundColor(Color.parseColor(colorValue));
+        btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("button_color")) {
+            // Obtener el nuevo color de los botones
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+            String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
+            btnLogin.setBackgroundColor(Color.parseColor(colorValue));
+            btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Desregistrar el listener
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
 }

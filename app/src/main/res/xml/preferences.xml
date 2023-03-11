@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Color de botones">
+        <ListPreference
+            android:key="button_color"
+            android:title="Color de los botones"
+            android:entries="@array/button_colors"
+            android:entryValues="@array/button_colors_values"
+            android:defaultValue="1" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
