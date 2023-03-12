@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">PiPaTi</string>
+
+    <!-- Login -->
+    <string name="TextViewTitulo">PIPATI</string>
+    <string name="EditTextUsuario">User</string>
+    <string name="EditTextContraseña">Password</string>
+    <string name="BtnInciarSesion">Login</string>
+    <string name="BtnRegistrarse">Sign in</string>
+
+    <!-- Registro -->
+    <string name="EditTextRepetirContraseña">Repeat Password</string>
+
+    <!-- Menú Principal -->
+    <string name="BtnJugar">Play</string>
+    <string name="BtnHistorial">History</string>
+    <string name="BtnAjustes">Settings</string>
+
+    <!-- Menú Principal -->
+    <string name="TextViewModosJuego">GAME MODES</string>
+    <string name="BtnModoClasico">Classic mode</string>
+    <string name="BtnModoRetos">Challenges mode</string>
+
+    <!-- Partida -->
+    <string name="TextViewPartida">GAME</string>
+    <string name="TextViewPuntuacion">Score: </string>
+    <string name="TextViewNombreUsuario">Player</string>
+    <string name="TextViewNombreUsuario2">AI</string>
+
+    <!-- Ajustes -->
+    <string name="Español">Spanish</string>
+    <string name="Ingles">English</string>
+
+
+</resources>

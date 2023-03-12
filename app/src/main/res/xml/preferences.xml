@@ -4,10 +4,19 @@
     <PreferenceCategory android:title="Color de botones">
         <ListPreference
             android:key="button_color"
-            android:title="Color de los botones"
+            android:title="Selecciona el color"
             android:entries="@array/button_colors"
             android:entryValues="@array/button_colors_values"
-            android:defaultValue="1" />
+            android:defaultValue="#1089DA"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Idiomas">
+        <ListPreference
+            android:key="languages"
+            android:title="Selecciona el idioma"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages_values"
+            android:defaultValue="es"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

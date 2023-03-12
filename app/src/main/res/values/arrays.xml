@@ -13,4 +13,14 @@
         <item>#F3C66C</item>
         <item>#F46666</item>
     </string-array>
+
+    <string-array name="languages">
+        <item>@string/Español</item>
+        <item>@string/Ingles</item>
+    </string-array>
+
+    <string-array name="languages_values">
+        <item>es</item>
+        <item>en</item>
+    </string-array>
 </resources>

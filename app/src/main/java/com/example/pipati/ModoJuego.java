@@ -3,13 +3,17 @@ package com.example.pipati;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import java.util.Locale;
 
 public class ModoJuego extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -56,13 +60,21 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
                 finish();
             }
         });
-        //cargarPreferencias();
+
+        cargarPreferencias();
     }
     private void cargarPreferencias(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ModoJuego.this);
         String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
         btnClassicMode.setBackgroundColor(Color.parseColor(colorValue));
         btnChallengeMode.setBackgroundColor(Color.parseColor(colorValue));
+
+        String language = sharedPreferences.getString("language", "en");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     @Override
@@ -73,6 +85,13 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
             btnClassicMode.setBackgroundColor(Color.parseColor(colorValue));
             btnChallengeMode.setBackgroundColor(Color.parseColor(colorValue));
+        } else if (key.equals("language")) {
+            String language = sharedPreferences.getString("language", "es");
+            Locale locale = new Locale(language);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
     }
 

@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLData;
+import java.util.Locale;
 
 public class Login extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -94,9 +97,9 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
                     Toast.makeText(Login.this, "Datos incorrectos, vuelva a intentarlo", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
-        //cargarPreferencias();
+
+        cargarPreferencias();
     }
     public boolean checkLogin(String nomUser, String pass) {
         String query = "SELECT * FROM users WHERE nomUser = ? AND pass = ?";
@@ -120,23 +123,41 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
         btnLogin.setBackgroundColor(Color.parseColor(colorValue));
         btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
+
+        String language = preferences.getString("language", "es");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
         if (key.equals("button_color")) {
             // Obtener el nuevo color de los botones
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
             String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
             btnLogin.setBackgroundColor(Color.parseColor(colorValue));
             btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
+        }  else if (key.equals("language")) {
+            String language = preferences.getString("language", "es");
+            Locale locale = new Locale(language);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            finish();
+            startActivity(getIntent());
         }
+        recreate();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // Desregistrar el listener
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        //sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 }
