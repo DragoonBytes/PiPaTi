@@ -72,7 +72,7 @@ public class Partida extends AppCompatActivity {
         btnTijeras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgP1.setImageResource(R.drawable.tijera);
+                imgP1.setImageResource(R.drawable.tijeras);
                 int player1 = 3;
                 int player2 = random.nextInt(2) + 1;
                 int result = checkResults(player1, player2);
@@ -95,7 +95,7 @@ public class Partida extends AppCompatActivity {
                         imgP2.setImageResource(R.drawable.papel);
                         return result = 0;
                     case 3:
-                        imgP2.setImageResource(R.drawable.tijera);
+                        imgP2.setImageResource(R.drawable.tijeras);
                         return result = 1;
 
                 }
@@ -111,7 +111,7 @@ public class Partida extends AppCompatActivity {
                         return result = 2;
 
                     case 3:
-                        imgP2.setImageResource(R.drawable.tijera);
+                        imgP2.setImageResource(R.drawable.tijeras);
                         return result = 0;
                 }
             case 3:
@@ -124,7 +124,7 @@ public class Partida extends AppCompatActivity {
                         imgP2.setImageResource(R.drawable.papel);
                         return result = 1;
                     case 3:
-                        imgP2.setImageResource(R.drawable.tijera);
+                        imgP2.setImageResource(R.drawable.tijeras);
                         return result = 2;
                 }
         }

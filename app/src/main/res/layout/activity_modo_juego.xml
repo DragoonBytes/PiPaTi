@@ -45,7 +45,7 @@
             android:layout_marginBottom="30dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="MODOS DE JUEGO"
+            android:text="@string/TextViewModosJuego"
             android:textAlignment="center"
             android:textSize="40dp"
             android:textColor="@color/white"
@@ -55,13 +55,13 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Modo Clásico"/>
+            android:text="@string/BtnModoClasico"/>
         <Button
             android:id="@+id/btnModoRetos"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Modo Retos"/>
+            android:text="@string/BtnModoRetos"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

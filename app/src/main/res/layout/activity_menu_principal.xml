@@ -44,7 +44,7 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="PIPATI"
+            android:text="@string/TextViewTitulo"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="40dp"
@@ -59,19 +59,19 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Jugar"/>
+            android:text="@string/BtnJugar"/>
         <Button
             android:id="@+id/botonHistorial"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Historial"/>
+            android:text="@string/BtnHistorial"/>
         <Button
             android:id="@+id/botonAjustes"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Ajustes"/>
+            android:text="@string/BtnAjustes"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

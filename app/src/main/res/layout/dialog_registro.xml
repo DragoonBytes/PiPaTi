@@ -9,18 +9,18 @@
         android:id="@+id/edit_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de usuario" />
+        android:hint="@string/EditTextUsuario" />
 
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contraseña"
+        android:hint="@string/EditTextContraseña"
         android:inputType="textPassword" />
     <EditText
         android:id="@+id/edit_password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Repetir contraseña"
+        android:hint="@string/EditTextRepetirContraseña"
         android:inputType="textPassword" />
 </LinearLayout>
