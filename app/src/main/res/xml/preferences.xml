@@ -12,7 +12,7 @@
 
     <PreferenceCategory android:title="Idiomas">
         <ListPreference
-            android:key="languages"
+            android:key="language"
             android:title="Selecciona el idioma"
             android:entries="@array/languages"
             android:entryValues="@array/languages_values"

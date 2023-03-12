@@ -61,7 +61,6 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             public void onClick(View view) {
                 Intent intent = new Intent(MenuPrincipal.this, Ajustes.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -102,16 +101,12 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             btnHistorial.setBackgroundColor(Color.parseColor(colorValue));
             btnAjustes.setBackgroundColor(Color.parseColor(colorValue));
         } else if (key.equals("language")) {
-            String language = preferences.getString("language", "en");
+            String language = preferences.getString("language", "es");
             Locale locale = new Locale(language);
             Locale.setDefault(locale);
-
             Configuration config = new Configuration();
             config.setLocale(locale);
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-            finish();
-            startActivity(getIntent());
         }
         recreate();
     }
@@ -120,6 +115,6 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
     protected void onDestroy() {
         super.onDestroy();
         // Desregistrar el listener
-        //sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 }

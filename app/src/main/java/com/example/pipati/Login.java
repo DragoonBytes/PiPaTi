@@ -34,11 +34,19 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+        String language = sharedPreferences.getString("language", "es");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+        setContentView(R.layout.activity_login);
 
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();
@@ -147,9 +155,6 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
             Configuration config = new Configuration();
             config.setLocale(locale);
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-            finish();
-            startActivity(getIntent());
         }
         recreate();
     }
@@ -158,6 +163,6 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
     protected void onDestroy() {
         super.onDestroy();
         // Desregistrar el listener
-        //sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 }
