@@ -56,8 +56,7 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
                 finish();
             }
         });
-
-        cargarPreferencias();
+        //cargarPreferencias();
     }
     private void cargarPreferencias(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ModoJuego.this);

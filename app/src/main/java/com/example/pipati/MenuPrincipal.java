@@ -67,8 +67,7 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
                 finish();
             }
         });
-
-        cargarPreferencias();
+        //cargarPreferencias();
     }
     private void cargarPreferencias(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuPrincipal.this);

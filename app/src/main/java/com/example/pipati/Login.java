@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
             }
 
         });
-        cargarPreferencias();
+        //cargarPreferencias();
     }
     public boolean checkLogin(String nomUser, String pass) {
         String query = "SELECT * FROM users WHERE nomUser = ? AND pass = ?";

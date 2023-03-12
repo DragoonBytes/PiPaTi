@@ -22,17 +22,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
         <TextView
             android:id="@+id/titulo"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Partida"
+            android:text="PARTIDA"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -44,6 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Score: "/>
             <TextView
                 android:id="@+id/scoreJugador2"
@@ -51,6 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Score: " />
         </LinearLayout>
 
@@ -87,6 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Jugador1: "/>
             <TextView
                 android:id="@+id/nomJugador2"
@@ -94,13 +101,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Jugador2: " />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center">
             <ImageButton
@@ -109,6 +118,7 @@
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 android:text="Piedra"
+                android:background="@android:color/transparent"
                 android:src="@drawable/piedra"
                 android:layout_marginRight="10dp"/>
 
@@ -118,6 +128,7 @@
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 android:text="Papel"
+                android:background="@android:color/transparent"
                 android:src="@drawable/papel"
                 android:layout_marginRight="10dp"/>
 
@@ -127,7 +138,8 @@
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 android:text="Tijera"
-                android:src="@drawable/tijera"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/tijeras"/>
         </LinearLayout>
 
     </LinearLayout>
