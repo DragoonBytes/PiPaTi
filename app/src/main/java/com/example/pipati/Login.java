@@ -12,6 +12,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -157,6 +158,22 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
         recreate();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("User", editTextUser.getText().toString());
+        outState.putString("Password", editTextPass.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        editTextUser.setText(outState.getString("User"));
+        editTextPass.setText(outState.getString("Password"));
     }
 
     @Override

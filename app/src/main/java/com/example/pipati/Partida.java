@@ -6,6 +6,9 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,8 +48,8 @@ public class Partida extends AppCompatActivity {
         nameP1 = (TextView) findViewById(R.id.nomJugador1);
         nameP2 = (TextView) findViewById(R.id.nomJugador2);
 
-        tvScoreP1.setText("Score: " + p1Score);
-        tvScoreP2.setText("Score: " + p2Score);
+        tvScoreP1.setText(getString(R.string.TextViewPuntuacion) + p1Score);
+        tvScoreP2.setText(getString(R.string.TextViewPuntuacion) + p2Score);
 
         Random random = new Random();
 
@@ -137,13 +140,13 @@ public class Partida extends AppCompatActivity {
             case 0:
                 nGames++;
                 p2Score++;
-                tvScoreP2.setText("Score: " + p2Score);
+                tvScoreP2.setText(getString(R.string.TextViewPuntuacion) + p2Score);
                 endGame();
                 break;
             case 1:
                 nGames++;
                 p1Score++;
-                tvScoreP1.setText("Score: " + p1Score);
+                tvScoreP1.setText(getString(R.string.TextViewPuntuacion) + p1Score);
                 endGame();
                 break;
             case 2:
@@ -162,16 +165,59 @@ public class Partida extends AppCompatActivity {
             statement.bindString(4, Integer.toString(p2Score));
             long result = statement.executeInsert();
             if (result != -1) {
-                //Toast.makeText(Partida.this, "Fin de partida", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Partida.this, "Fin de partida", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Partida.this, ModoJuego.class);
                 startActivity(intent);
                 finish();
             } else {
-                //Toast.makeText(Partida.this, "Error al guardar el resultado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Partida.this, "Error al guardar el resultado", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Partida.this, ModoJuego.class);
                 startActivity(intent);
                 finish();
             }
         }
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bitmap imagen1 = ((BitmapDrawable) imgP1.getDrawable()).getBitmap();
+        Bitmap imagen2 = ((BitmapDrawable) imgP2.getDrawable()).getBitmap();
+        TextView titulo = (TextView) findViewById(R.id.titulo);
+
+        outState.putString("Title", titulo.getText().toString());
+        outState.putString("ScoreName", getString(R.string.TextViewPuntuacion));
+
+        outState.putParcelable("image1", imagen1);
+        outState.putParcelable("image2", imagen2);
+
+        outState.putInt("Score1", p1Score);
+        outState.putInt("Score2", p2Score);
+
+        outState.putString("Name1", nameP1.getText().toString());
+        outState.putString("Name2", nameP2.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bitmap imagen1 = outState.getParcelable("image1");
+        Bitmap imagen2 = outState.getParcelable("image2");
+        TextView titulo = (TextView) findViewById(R.id.titulo);
+
+        titulo.setText(outState.getString("Title"));
+
+        imgP1.setImageBitmap(imagen1);
+        imgP2.setImageBitmap(imagen2);
+
+        p1Score = outState.getInt("Score1");
+        p2Score = outState.getInt("Score2");
+
+        tvScoreP1.setText(outState.getString("ScoreName") + Integer.toString(outState.getInt("Score1")));
+        tvScoreP2.setText(outState.getString("ScoreName") + Integer.toString(outState.getInt("Score2")));
+
+        nameP1.setText(outState.getString("Name1"));
+        nameP2.setText(outState.getString("Name2"));
     }
 }

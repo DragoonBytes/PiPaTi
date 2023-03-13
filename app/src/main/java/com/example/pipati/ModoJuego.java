@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -93,6 +94,28 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             config.setLocale(locale);
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        TextView titulo = (TextView) findViewById(R.id.textoModoJuego);
+        outState.putString("Title", titulo.getText().toString());
+
+        outState.putString("Clasico", btnClassicMode.getText().toString());
+        outState.putString("Retos", btnChallengeMode.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        TextView titulo = (TextView) findViewById(R.id.textoModoJuego);
+        titulo.setText(outState.getString("Title"));
+
+        btnClassicMode.setText(outState.getString("Clasico"));
+        btnChallengeMode.setText(outState.getString("Retos"));
     }
 
     @Override

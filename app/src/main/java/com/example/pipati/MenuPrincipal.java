@@ -7,7 +7,9 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -109,6 +111,24 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
         recreate();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("Jugar", btnJugar.getText().toString());
+        outState.putString("Historial", btnHistorial.getText().toString());
+        outState.putString("Ajustes", btnAjustes.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        btnJugar.setText(outState.getString("Jugar"));
+        btnHistorial.setText(outState.getString("Historial"));
+        btnAjustes.setText(outState.getString("Ajustes"));
     }
 
     @Override
