@@ -27,6 +27,9 @@
     <string name="TextViewNombreUsuario">Player</string>
     <string name="TextViewNombreUsuario2">AI</string>
 
+    <!-- Historial -->
+    <string name="borrarHistorial">Delete History</string>
+
     <!-- Ajustes -->
     <string name="Español">Spanish</string>
     <string name="Ingles">English</string>

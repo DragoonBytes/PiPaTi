@@ -1,28 +1,39 @@
 package com.example.pipati;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 
 public class Partida extends AppCompatActivity {
 
     SQLiteDatabase db;
+    AlertDialog dialogFinPartida;
     ImageView imgP1, imgP2;
     ImageButton btnPiedra, btnPapel, btnTijeras;
     TextView tvScoreP1, tvScoreP2, nameP1, nameP2;
@@ -141,21 +152,28 @@ public class Partida extends AppCompatActivity {
                 nGames++;
                 p2Score++;
                 tvScoreP2.setText(getString(R.string.TextViewPuntuacion) + p2Score);
-                endGame();
+                try {
+                    endGame();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case 1:
                 nGames++;
                 p1Score++;
                 tvScoreP1.setText(getString(R.string.TextViewPuntuacion) + p1Score);
-                endGame();
-                break;
+                try {
+                    endGame();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }                break;
             case 2:
                 Toast.makeText(Partida.this, "Empate", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    public void endGame(){
+    public void endGame() throws IOException {
         if (nGames == 3 || p1Score == 2 || p2Score == 2){
             String query = "INSERT INTO games(player1, scoreP1, player2, ScoreP2) VALUES(?, ?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(query);
@@ -166,9 +184,22 @@ public class Partida extends AppCompatActivity {
             long result = statement.executeInsert();
             if (result != -1) {
                 Toast.makeText(Partida.this, "Fin de partida", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Partida.this, ModoJuego.class);
-                startActivity(intent);
-                finish();
+
+                // Creas el dialogo con un reto aleatorio de retos.txt
+                AlertDialog.Builder builder = new AlertDialog.Builder(Partida.this).setCancelable(false);
+                TextView textView = new TextView(this);
+                String texto = readRandomLine();
+                textView.setText(texto);
+                builder.setView(textView);
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Partida.this, ModoJuego.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.show();
             } else {
                 Toast.makeText(Partida.this, "Error al guardar el resultado", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Partida.this, ModoJuego.class);
@@ -176,6 +207,34 @@ public class Partida extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    private String readRandomLine(){
+        String randomLine = "";
+        try {
+            InputStream inputStream = getAssets().open("retos.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            int numLines = 0;
+            while (reader.readLine() != null) {
+                numLines++;
+            }
+
+            Random random = new Random();
+            int randomLineNum = random.nextInt(numLines);
+
+            inputStream.reset();
+
+            for (int i = 0; i < randomLineNum; i++) {
+                randomLine = reader.readLine();
+            }
+            reader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return randomLine;
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
