@@ -19,7 +19,7 @@
     <!-- Menú Principal -->
     <string name="TextViewModosJuego">GAME MODES</string>
     <string name="BtnModoClasico">Classic mode</string>
-    <string name="BtnModoRetos">Challenges mode</string>
+    <string name="BtnModoRetos">Challenge mode</string>
 
     <!-- Partida -->
     <string name="TextViewPartida">GAME</string>
