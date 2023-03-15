@@ -44,6 +44,8 @@ public class Partida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
 
+        // Inicializamos lo necesario para la partida
+
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();
 
@@ -62,18 +64,25 @@ public class Partida extends AppCompatActivity {
         tvScoreP1.setText(getString(R.string.TextViewPuntuacion) + p1Score);
         tvScoreP2.setText(getString(R.string.TextViewPuntuacion) + p2Score);
 
+        nameP1.setText(getIntent().getStringExtra("user"));
+
         Random random = new Random();
 
+        // Boton para seleccionar la piedra
         btnPiedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
+
+                // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.piedra);
                     int player1 = 1;
                     int player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
+
+                // Si escogimos el modo retos la opcion del rival la escogera un segundo jugador
                 } else {
                     if(turno == 0) {
                         player1 = 1;
@@ -98,16 +107,22 @@ public class Partida extends AppCompatActivity {
                 }
             }
         });
+
+        // Boton para seleccionar papel
         btnPapel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
+
+                // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.papel);
                     int player1 = 2;
                     int player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
+
+                // Si escogimos el modo retos la opcion del rival la escogera un segundo jugador
                 } else {
                     if(turno == 0) {
                         player1 = 2;
@@ -136,12 +151,16 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
+
+                // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.tijeras);
                     int player1 = 3;
                     int player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
+
+                // Si escogimos el modo retos la opcion del rival la escogera un segundo jugador
                 } else {
                     if(turno == 0) {
                         player1 = 3;
@@ -168,6 +187,8 @@ public class Partida extends AppCompatActivity {
         });
     }
 
+    // Se gestiona el resultado de la ronda comprobando la opcion que ha escogida cada jugador
+    // Los resultados posibles son: Perder(0), Ganar(1) y Empate(2)
     public int checkResults(int player1, int player2) {
         int result = 0;
         switch(player1) {
@@ -217,6 +238,7 @@ public class Partida extends AppCompatActivity {
         return result;
     }
 
+    // Se gestionan los cambios en la interfaz grafica en funcion del resultado de la ronda
     public void results(int result){
         switch (result){
             case 0:
@@ -244,6 +266,8 @@ public class Partida extends AppCompatActivity {
         }
     }
 
+    // Se gestiona lo ocurre al final de la partida
+    // Se guarda el resultado de la partida y si se esta en el modo retos se muestra el reto a los jugadores
     public void endGame() throws IOException {
         if (nGames == 3 || p1Score == 2 || p2Score == 2){
             String query = "INSERT INTO games(player1, scoreP1, player2, ScoreP2) VALUES(?, ?, ?, ?)";
@@ -283,6 +307,7 @@ public class Partida extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Partida.this, ModoJuego.class);
+                        intent.putExtra("user", getIntent().getStringExtra("user"));
                         startActivity(intent);
                         finish();
                     }
@@ -291,12 +316,14 @@ public class Partida extends AppCompatActivity {
             } else {
                 Toast.makeText(Partida.this, "Error al guardar el resultado", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Partida.this, ModoJuego.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
                 finish();
             }
         }
     }
 
+    // Funcion que lee una linea aleatoria del fichero de texto retos.txt
     private String readRandomLine(){
         String randomLine = "";
         try {
@@ -324,6 +351,8 @@ public class Partida extends AppCompatActivity {
 
         return randomLine;
     }
+
+    // Se guardan los elementos de la partida para que al rotar la pantalla no se pierdan los datos
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -345,6 +374,7 @@ public class Partida extends AppCompatActivity {
         outState.putString("Name2", nameP2.getText().toString());
     }
 
+    // Se recuperan los elementos guardados
     @Override
     protected void onRestoreInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

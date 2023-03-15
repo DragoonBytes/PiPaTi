@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="button_colors">
-        <item>Azul</item>
-        <item>Verde</item>
-        <item>Amarillo</item>
-        <item>Rojo</item>
+        <item>@string/Azul</item>
+        <item>@string/Verde</item>
+        <item>@string/Amarillo</item>
+        <item>@string/Rojo</item>
     </string-array>
 
     <string-array name="button_colors_values">

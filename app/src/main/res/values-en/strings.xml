@@ -31,8 +31,20 @@
     <string name="borrarHistorial">Delete History</string>
 
     <!-- Ajustes -->
+    <string name="BtnGuardar">Save</string>
+
     <string name="Español">Spanish</string>
     <string name="Ingles">English</string>
+
+    <string name="Azul">Blue</string>
+    <string name="Verde">Green</string>
+    <string name="Amarillo">Yellow</string>
+    <string name="Rojo">Red</string>
+
+    <string name="TextoTituloColorBotones">Button color</string>
+    <string name="TextoSeleccionColor">Select a color</string>
+    <string name="TextoTituloIdioma">Language</string>
+    <string name="TextoSeleccionIdioma">Select the language</string>
 
 
 </resources>

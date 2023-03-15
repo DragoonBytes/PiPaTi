@@ -61,6 +61,7 @@ public class Historico extends AppCompatActivity {
             }
         });
 
+        // Este boton elimina el resultado de las partidas guardadas en la base de datos
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +82,7 @@ public class Historico extends AppCompatActivity {
         });
     }
 
+    // Funcion que crea una notificación que indica si se ha borrado el historial sin problemas
     public void createNotification(){
         // Crear un intent para abrir la aplicación cuando se hace clic en la notificación
         Intent intent = new Intent(Historico.this, MenuPrincipal.class);
@@ -98,6 +100,8 @@ public class Historico extends AppCompatActivity {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, builder.build());
     }
+
+    // Funcion que crea un canal para las notificaciones, obligatorio para versiones superiores a la 26
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

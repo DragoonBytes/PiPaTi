@@ -36,11 +36,13 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
 
         btnBack = (ImageButton) findViewById(R.id.modoJuegoFlechaAtras);
 
+        // Se guarda el modo de juego seleccionado, ya que el juego sera diferente en funcion del mismo
         btnClassicMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ModoJuego.this, Partida.class);
                 intent.putExtra("ModoJuego", "Clasico");
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
                 finish();
             }
@@ -50,6 +52,7 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             public void onClick(View view) {
                 Intent intent = new Intent(ModoJuego.this, Partida.class);
                 intent.putExtra("ModoJuego", "Retos");
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
                 finish();
             }
@@ -59,6 +62,7 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ModoJuego.this, MenuPrincipal.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
                 finish();
             }

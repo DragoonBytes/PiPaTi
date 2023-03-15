@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Color de botones">
+    <PreferenceCategory android:title="@string/TextoTituloColorBotones">
         <ListPreference
             android:key="button_color"
-            android:title="Selecciona el color"
+            android:title="@string/TextoSeleccionColor"
             android:entries="@array/button_colors"
             android:entryValues="@array/button_colors_values"
             android:defaultValue="#1089DA"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Idiomas">
+    <PreferenceCategory android:title="@string/TextoTituloIdioma">
         <ListPreference
             android:key="language"
-            android:title="Selecciona el idioma"
+            android:title="@string/TextoSeleccionIdioma"
             android:entries="@array/languages"
             android:entryValues="@array/languages_values"
             android:defaultValue="es"/>
