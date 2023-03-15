@@ -40,6 +40,7 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ModoJuego.this, Partida.class);
+                intent.putExtra("ModoJuego", "Clasico");
                 startActivity(intent);
                 finish();
             }
@@ -48,6 +49,7 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ModoJuego.this, Partida.class);
+                intent.putExtra("ModoJuego", "Retos");
                 startActivity(intent);
                 finish();
             }

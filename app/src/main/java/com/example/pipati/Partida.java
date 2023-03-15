@@ -37,7 +37,7 @@ public class Partida extends AppCompatActivity {
     ImageView imgP1, imgP2;
     ImageButton btnPiedra, btnPapel, btnTijeras;
     TextView tvScoreP1, tvScoreP2, nameP1, nameP2;
-    int p1Score, p2Score, nGames = 0;
+    int player1, player2, turno, p1Score, p2Score, nGames = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,32 +67,103 @@ public class Partida extends AppCompatActivity {
         btnPiedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgP1.setImageResource(R.drawable.piedra);
-                int player1 = 1;
-                int player2 = random.nextInt(2) + 1;
-                int result = checkResults(player1, player2);
-                results(result);
+                Intent intent = getIntent();
+                if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
+                    imgP1.setImageResource(R.drawable.piedra);
+                    int player1 = 1;
+                    int player2 = random.nextInt(2) + 1;
+                    int result = checkResults(player1, player2);
+                    results(result);
+                } else {
+                    if(turno == 0) {
+                        player1 = 1;
+                        turno++;
+                    } else {
+                        player2 = 1;
+                        switch (player1){
+                            case 1:
+                                imgP1.setImageResource(R.drawable.piedra);
+                                break;
+                            case 2:
+                                imgP1.setImageResource(R.drawable.papel);
+                                break;
+                            case 3:
+                                imgP1.setImageResource(R.drawable.tijeras);
+                                break;
+                        }
+                        int result = checkResults(player1, player2);
+                        turno = 0;
+                        results(result);
+                    }
+                }
             }
         });
         btnPapel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgP1.setImageResource(R.drawable.papel);
-                int player1 = 2;
-                int player2 = random.nextInt(2) + 1;
-                int result = checkResults(player1, player2);
-                results(result);
+                Intent intent = getIntent();
+                if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
+                    imgP1.setImageResource(R.drawable.papel);
+                    int player1 = 2;
+                    int player2 = random.nextInt(2) + 1;
+                    int result = checkResults(player1, player2);
+                    results(result);
+                } else {
+                    if(turno == 0) {
+                        player1 = 2;
+                        turno++;
+                    } else {
+                        player2 = 2;
+                        switch (player1){
+                            case 1:
+                                imgP1.setImageResource(R.drawable.piedra);
+                                break;
+                            case 2:
+                                imgP1.setImageResource(R.drawable.papel);
+                                break;
+                            case 3:
+                                imgP1.setImageResource(R.drawable.tijeras);
+                                break;
+                        }
+                        int result = checkResults(player1, player2);
+                        turno = 0;
+                        results(result);
+                    }
+                }
             }
         });
         btnTijeras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgP1.setImageResource(R.drawable.tijeras);
-                int player1 = 3;
-                int player2 = random.nextInt(2) + 1;
-                int result = checkResults(player1, player2);
-                results(result);
-
+                Intent intent = getIntent();
+                if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
+                    imgP1.setImageResource(R.drawable.tijeras);
+                    int player1 = 3;
+                    int player2 = random.nextInt(2) + 1;
+                    int result = checkResults(player1, player2);
+                    results(result);
+                } else {
+                    if(turno == 0) {
+                        player1 = 3;
+                        turno++;
+                    } else {
+                        player2 = 3;
+                        switch (player1){
+                            case 1:
+                                imgP1.setImageResource(R.drawable.piedra);
+                                break;
+                            case 2:
+                                imgP1.setImageResource(R.drawable.papel);
+                                break;
+                            case 3:
+                                imgP1.setImageResource(R.drawable.tijeras);
+                                break;
+                        }
+                        int result = checkResults(player1, player2);
+                        turno = 0;
+                        results(result);
+                    }
+                }
             }
         });
     }
@@ -184,12 +255,29 @@ public class Partida extends AppCompatActivity {
             long result = statement.executeInsert();
             if (result != -1) {
                 Toast.makeText(Partida.this, "Fin de partida", Toast.LENGTH_SHORT).show();
-
                 // Creas el dialogo con un reto aleatorio de retos.txt
                 AlertDialog.Builder builder = new AlertDialog.Builder(Partida.this).setCancelable(false);
                 TextView textView = new TextView(this);
                 String texto = readRandomLine();
-                textView.setText(texto);
+
+                Intent intentExtras = getIntent();
+                if (intentExtras.getStringExtra("ModoJuego").equals("Clasico")) {
+                    if (p1Score>p2Score){
+                        textView.setText("Felicidades " + nameP1.getText().toString() + ", has ganado");
+                    } else {
+                        textView.setText("Felicidades " + nameP2.getText().toString() + " has ganado");
+                    }
+                } else {
+                    if (p1Score>p2Score){
+                        textView.setText("Felicidades " + nameP1.getText().toString() + ", has ganado.\n"
+                                + nameP2.getText().toString() + " ahora deberas cumplir el siguiente reto:\n\n"
+                                + texto);
+                    } else {
+                        textView.setText("Felicidades " + nameP2.getText().toString() + ", has ganado.\n"
+                                + nameP1.getText().toString() + " ahora deberas cumplir el siguiente reto:\n\n"
+                                + texto);
+                    }
+                }
                 builder.setView(textView);
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
