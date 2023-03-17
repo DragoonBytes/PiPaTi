@@ -11,18 +11,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.se.omapi.Channel;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class Historico extends AppCompatActivity {
 
@@ -39,19 +34,21 @@ public class Historico extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico);
 
+        // Inicializacion de las variables
         listView = (ListView) findViewById(R.id.list_historico);
         btnBack = (ImageButton) findViewById(R.id.historicoFlechaAtras);
         btnDelete = (Button) findViewById(R.id.btnBorrarHistorial);
 
         DBManager dbHelper = new DBManager(this);
+
+        // Conseguimos la tabla "games" de la BD para mostrarla en el historial
         db = dbHelper.getWritableDatabase();
         String[] columnas = {"_id", "player1", "scoreP1", "player2", "scoreP2"};
         Cursor cursor = db.query("games", columnas, null, null, null, null, null);
-        cursorAdapter = new MiAdaptador(
-                Historico.this,
-                cursor);
+        cursorAdapter = new AdaptadorLinea(Historico.this, cursor);
         listView.setAdapter(cursorAdapter);
 
+        // Boton que carga la actividad anterior
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +58,7 @@ public class Historico extends AppCompatActivity {
             }
         });
 
-        // Este boton elimina el resultado de las partidas guardadas en la base de datos
+        // Boton que elimina todas las partidas guardadas de la base de datos
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +79,12 @@ public class Historico extends AppCompatActivity {
         });
     }
 
-    // Funcion que crea una notificación que indica si se ha borrado el historial sin problemas
     public void createNotification(){
+        /**
+         * Extraido de: https://developer.android.com/training/notify-user/build-notification?hl=es-419
+         * Modificado por: Hugo Robles, para adaptarlo a mi aplicacion
+         */
+
         // Crear un intent para abrir la aplicación cuando se hace clic en la notificación
         Intent intent = new Intent(Historico.this, MenuPrincipal.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(Historico.this, 0, intent, 0);
@@ -101,14 +102,14 @@ public class Historico extends AppCompatActivity {
         notificationManager.notify(0, builder.build());
     }
 
-    // Funcion que crea un canal para las notificaciones, obligatorio para versiones superiores a la 26
     private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
+        /**
+         * Extraido de: https://developer.android.com/training/notify-user/build-notification?hl=es-419
+         * Modificado por: Hugo Robles, para adaptarlo a mi aplicacion
+         */
+
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel("ChannelID", "Canal", importance);
-        // Register the channel with the system; you can't change the importance
-        // or other notification behaviors after this
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
     }

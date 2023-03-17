@@ -1,5 +1,10 @@
 package com.example.pipati;
 
+/**
+ * Extraido de: https://developer.android.com/reference/android/widget/CursorAdapter
+ * Modificado por: Hugo Robles para adaptarlo a mi aplicacion
+ */
+
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -8,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-public class MiAdaptador extends CursorAdapter {
+public class AdaptadorLinea extends CursorAdapter {
 
-    public MiAdaptador(Context context, Cursor cursor) {
+    public AdaptadorLinea(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
 

@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ModoJuego">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imgFondoModoJuego"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/oso"/>
-    </FrameLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -48,7 +35,7 @@
             android:text="@string/TextViewModosJuego"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"/>
         <Button
             android:id="@+id/btnModoClasico"

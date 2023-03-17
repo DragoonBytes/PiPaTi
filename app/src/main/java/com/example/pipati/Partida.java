@@ -33,7 +33,6 @@ import java.util.Random;
 public class Partida extends AppCompatActivity {
 
     SQLiteDatabase db;
-    AlertDialog dialogFinPartida;
     ImageView imgP1, imgP2;
     ImageButton btnPiedra, btnPapel, btnTijeras;
     TextView tvScoreP1, tvScoreP2, nameP1, nameP2;
@@ -44,7 +43,7 @@ public class Partida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
 
-        // Inicializamos lo necesario para la partida
+        // Inicializacion de las variables
 
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();

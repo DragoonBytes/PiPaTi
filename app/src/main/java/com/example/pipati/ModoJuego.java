@@ -68,9 +68,9 @@ public class ModoJuego extends AppCompatActivity implements SharedPreferences.On
             }
         });
 
-        cargarPreferencias();
+        loadPreferences();
     }
-    private void cargarPreferencias(){
+    private void loadPreferences(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ModoJuego.this);
         String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
         btnClassicMode.setBackgroundColor(Color.parseColor(colorValue));

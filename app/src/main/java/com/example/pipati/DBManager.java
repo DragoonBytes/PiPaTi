@@ -1,5 +1,10 @@
 package com.example.pipati;
 
+/**
+ * Extraido de: https://developer.android.com/training/data-storage/sqlite?hl=es-419
+ * Modificado por: Hugo Robles, para cambiar el nomobre de algunos elementos.
+ **/
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

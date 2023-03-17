@@ -33,13 +33,13 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
-        // Inicializamos los recursos
+        // Inicializamos las variables
         btnJugar = (Button) findViewById(R.id.botonJugar);
         btnHistorial = (Button) findViewById(R.id.botonHistorial);
         btnAjustes = (Button) findViewById(R.id.botonAjustes);
         btnBack = (ImageButton) findViewById(R.id.menuPrincipalFlechaAtras);
 
-        // El boton jugar carga la actividad ModoJuego
+        // Boton que abre la actividad de "Modo de Juego"
         btnJugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +50,7 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             }
         });
 
-        // El boton historial carga la actividad Historico
+        // Boton que carga la actividad Historico
         btnHistorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +61,7 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             }
         });
 
-        // El boton ajustes carga la actividad Ajustes
+        // Boton carga la actividad Ajustes
         btnAjustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             }
         });
 
-        // El boton atras carga la actividad anterior
+        // Boton que carga la actividad anterior
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,22 +82,20 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
             }
         });
 
-        // Cargamos las preferencias establecidas por el ususario
-        cargarPreferencias();
+        loadPreferences();
     }
 
     // Funcion que carga las preferencias del usuario
-    private void cargarPreferencias(){
+    private void loadPreferences(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuPrincipal.this);
-        String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
+        String colorValue = preferences.getString("button_color", "#F46666"); // El color por defecto es "Rojo"
         btnJugar.setBackgroundColor(Color.parseColor(colorValue));
         btnHistorial.setBackgroundColor(Color.parseColor(colorValue));
         btnAjustes.setBackgroundColor(Color.parseColor(colorValue));
 
-        String language = preferences.getString("language", "es");
+        String language = preferences.getString("language", "es"); // El idioma por defecto es "Español"
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
-
         Configuration config = new Configuration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
@@ -106,12 +104,15 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuPrincipal.this);
+        // Si se ha cambiado el color de los botones se actualiza
         if (key.equals("button_color")) {
             // Obtener el nuevo color de los botones
-            String colorValue = preferences.getString("button_color", "#0000FF"); // El valor por defecto es azul
+            String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
             btnJugar.setBackgroundColor(Color.parseColor(colorValue));
             btnHistorial.setBackgroundColor(Color.parseColor(colorValue));
             btnAjustes.setBackgroundColor(Color.parseColor(colorValue));
+
+        // Si se ha cambiado el idioma se actualiza
         } else if (key.equals("language")) {
             String language = preferences.getString("language", "es");
             Locale locale = new Locale(language);

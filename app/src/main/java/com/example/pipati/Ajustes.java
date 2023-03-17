@@ -28,14 +28,4 @@ public class Ajustes extends AppCompatActivity {
                 break;
         }
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
 }

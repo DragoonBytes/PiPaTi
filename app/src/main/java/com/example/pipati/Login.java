@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         // Se establece el idioma antes del layout para que aparezca el definido por el usuario
-        // en vez del que viene en el dispositivo
+        // en vez del que viene en el dispositivo por defecto
         String language = sharedPreferences.getString("language", "es");
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
 
         setContentView(R.layout.activity_login);
 
-        // Se declaran las variables de los elementos a utilizar
+        // Inicializacion de variables
         DBManager dbManager = new DBManager(this);
         db = dbManager.getWritableDatabase();
 
@@ -65,7 +65,6 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
         builder.setView(R.layout.dialog_registro);
 
-        // Si el usuario hace click en el boton de registrarse aparece el dialogo de registro
         builder.setPositiveButton("Registrarse", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -95,7 +94,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         builder.setNegativeButton("Cancelar", null);
         dialogRegistro = builder.create();
 
-        // Pulsar el boton de registro muestra el dialogo de registro
+        // Boton que muestra el dialog de registro
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +102,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
             }
         });
 
-        // Se gestiona el inicio de sesion
+        // Boton que gestiona el inicio de sesion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +114,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
                     Intent intent = new Intent(Login.this, MenuPrincipal.class);
                     intent.putExtra("user", username);
                     startActivity(intent);
+
                 // En caso contrario se muestra un mensaje toast de error
                 } else {
                     // Muestra un mensaje de error
@@ -124,10 +124,10 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         });
 
         // Se cargan las preferencias del usuario
-        cargarPreferencias();
+        loadPreferences();
     }
 
-    // Función para comprobar si el usuario introducido existe en la base de datos
+    // Función que comprueba si el usuario existe en la BD
     public boolean checkLogin(String nomUser, String pass) {
         String query = "SELECT * FROM users WHERE nomUser = ? AND pass = ?";
         Cursor cursor = db.rawQuery(query, new String[]{nomUser, pass});
@@ -147,13 +147,15 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
     }
 
     // Funcion que carga las preferencias del usuario
-    private void cargarPreferencias(){
+    private void loadPreferences(){
+        // Cargamos el color de los botones
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
-        String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
+        String colorValue = preferences.getString("button_color", "#F46666"); // Color por defecto "Rojo"
         btnLogin.setBackgroundColor(Color.parseColor(colorValue));
         btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
 
-        String language = preferences.getString("language", "es");
+        // Cargamos el idioma
+        String language = preferences.getString("language", "es"); // Idioma por defecto "Español"
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -165,12 +167,14 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        // Si se ha cambiado el color de los botones se actualiza
         if (key.equals("button_color")) {
             // Obtener el nuevo color de los botones
             String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
             btnLogin.setBackgroundColor(Color.parseColor(colorValue));
             btnRegistro.setBackgroundColor(Color.parseColor(colorValue));
 
+        // Si se ha cambiado el idioma se actualiza
         }  else if (key.equals("language")) {
             String language = preferences.getString("language", "es");
             Locale locale = new Locale(language);
@@ -182,7 +186,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         recreate();
     }
 
-    // Con esta función se evita que se pierda lo escrito por el usuario al rotar la pantalla
+    // Guardar elementos de la actividad
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -191,7 +195,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         outState.putString("Password", editTextPass.getText().toString());
     }
 
-    // Se restaura lo escrito por el usuario antes de rotar la pantalla
+    // Restaurar elementos de la actividad
     @Override
     protected void onRestoreInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
