@@ -68,6 +68,7 @@ public class MenuPrincipal extends AppCompatActivity implements SharedPreference
                 Intent intent = new Intent(MenuPrincipal.this, Ajustes.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
+                finish();
             }
         });
 

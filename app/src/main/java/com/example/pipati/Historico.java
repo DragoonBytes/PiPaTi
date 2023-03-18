@@ -53,6 +53,7 @@ public class Historico extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Historico.this, MenuPrincipal.class);
+                intent.putExtra("user", getIntent().getStringExtra("user"));
                 startActivity(intent);
                 finish();
             }
