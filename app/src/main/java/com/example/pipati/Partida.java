@@ -2,6 +2,7 @@ package com.example.pipati;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -10,10 +11,13 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +31,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -36,11 +41,39 @@ public class Partida extends AppCompatActivity {
     ImageView imgP1, imgP2;
     ImageButton btnPiedra, btnPapel, btnTijeras;
     TextView tvScoreP1, tvScoreP2, nameP1, nameP2;
+    SharedPreferences sharedPreferences;
     int player1, player2, turno, p1Score, p2Score, nGames = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Obtenemos las preferencias
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Partida.this);
+                if (key.equals("language")) {
+                    String language = preferences.getString("language", "es");
+                    Locale locale = new Locale(language);
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.setLocale(locale);
+                    getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+                }
+                recreate();
+            }
+        });
+
+        String language = sharedPreferences.getString("language", "es");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_partida);
 
         // Inicializacion de las variables

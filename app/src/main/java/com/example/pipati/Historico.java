@@ -2,15 +2,19 @@ package com.example.pipati;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -19,19 +23,55 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.util.Locale;
+
 public class Historico extends AppCompatActivity {
 
     ListView listView;
     Button btnDelete;
     ImageButton btnBack;
     SQLiteDatabase db;
-    Cursor cursor;
     CursorAdapter cursorAdapter;
+    SharedPreferences sharedPreferences;
     NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Obtenemos las preferencias
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Historico.this);
+                // Si se ha cambiado el color de los botones se actualiza
+                if (key.equals("button_color")) {
+                    // Obtener el nuevo color de los botones
+                    String colorValue = preferences.getString("button_color", "#F46666"); // El valor por defecto es azul
+                    btnDelete.setBackgroundColor(Color.parseColor(colorValue));
+
+                    // Si se ha cambiado el idioma se actualiza
+                } else if (key.equals("language")) {
+                    String language = preferences.getString("language", "es");
+                    Locale locale = new Locale(language);
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.setLocale(locale);
+                    getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+                }
+                recreate();
+            }
+        });
+
+        String language = sharedPreferences.getString("language", "es");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_historico);
 
         // Inicializacion de las variables
@@ -47,6 +87,7 @@ public class Historico extends AppCompatActivity {
         Cursor cursor = db.query("games", columnas, null, null, null, null, null);
         cursorAdapter = new AdaptadorLinea(Historico.this, cursor);
         listView.setAdapter(cursorAdapter);
+
 
         // Boton que carga la actividad anterior
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +119,7 @@ public class Historico extends AppCompatActivity {
                 }
             }
         });
+        loadPreferences();
     }
 
     public void createNotification(){
@@ -113,5 +155,19 @@ public class Historico extends AppCompatActivity {
         NotificationChannel channel = new NotificationChannel("ChannelID", "Canal", importance);
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
+    }
+
+    private void loadPreferences(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Historico.this);
+        String colorValue = preferences.getString("button_color", "#F46666"); // El color por defecto es "Rojo"
+        btnDelete.setBackgroundColor(Color.parseColor(colorValue));
+
+
+        String language = preferences.getString("language", "es"); // El idioma por defecto es "Español"
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }
