@@ -6,49 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".ModoJuego">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageButton
-            android:id="@+id/modoJuegoFlechaAtras"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/flecha"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop" />
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/modoJuegoFlechaAtras"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/flecha"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textoModoJuego"
-            android:layout_width="400dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="30dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/TextViewModosJuego"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/btnModoClasico"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/BtnModoClasico"/>
-        <Button
-            android:id="@+id/btnModoRetos"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/BtnModoRetos"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textoModoJuego"
+                    android:layout_width="400dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/TextViewModosJuego"
+                    android:textAlignment="center"
+                    android:textSize="40dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <Button
+                    android:id="@+id/btnModoClasico"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnModoClasico"/>
+                <Button
+                    android:id="@+id/btnModoRetos"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnModoRetos"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

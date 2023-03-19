@@ -6,28 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".Ajustes">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:elevation="8dp">
-            <Button
-                android:id="@+id/btnAtrasAjustes"
-                android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="@string/BtnGuardar"/>
-        </RelativeLayout>
+                android:gravity="center"
+                android:elevation="8dp">
+                <Button
+                    android:id="@+id/btnAtrasAjustes"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/BtnGuardar"/>
+            </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/fragmentContainerAjustes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/fragmentContainerAjustes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

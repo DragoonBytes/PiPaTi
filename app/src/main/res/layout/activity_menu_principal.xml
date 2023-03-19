@@ -6,59 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".MenuPrincipal">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageButton
-            android:id="@+id/menuPrincipalFlechaAtras"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/flecha"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textoTitulo"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/TextViewTitulo"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:textStyle="bold"/>
-        <ImageView
-            android:id="@+id/imagenPortada"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center"/>
-        <Button
-            android:id="@+id/botonJugar"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/BtnJugar"/>
-        <Button
-            android:id="@+id/botonHistorial"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/BtnHistorial"/>
-        <Button
-            android:id="@+id/botonAjustes"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/BtnAjustes"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/menuPrincipalFlechaAtras"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/flecha"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textoTitulo"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/TextViewTitulo"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="40dp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/imagenPortada"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center"/>
+                <Button
+                    android:id="@+id/botonJugar"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnJugar"/>
+                <Button
+                    android:id="@+id/botonHistorial"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnHistorial"/>
+                <Button
+                    android:id="@+id/botonAjustes"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnAjustes"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

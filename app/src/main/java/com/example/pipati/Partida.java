@@ -76,8 +76,8 @@ public class Partida extends AppCompatActivity {
                 // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.piedra);
-                    int player1 = 1;
-                    int player2 = random.nextInt(2) + 1;
+                    player1 = 1;
+                    player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
 
@@ -116,8 +116,8 @@ public class Partida extends AppCompatActivity {
                 // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.papel);
-                    int player1 = 2;
-                    int player2 = random.nextInt(2) + 1;
+                    player1 = 2;
+                    player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
 
@@ -154,8 +154,8 @@ public class Partida extends AppCompatActivity {
                 // Si escogimos el modo clasico la opcion del rival se escogerá aleatoriamente
                 if("Clasico".equals(intent.getStringExtra("ModoJuego"))) {
                     imgP1.setImageResource(R.drawable.tijeras);
-                    int player1 = 3;
-                    int player2 = random.nextInt(2) + 1;
+                    player1 = 3;
+                    player2 = random.nextInt(2) + 1;
                     int result = checkResults(player1, player2);
                     results(result);
 
@@ -356,15 +356,16 @@ public class Partida extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bitmap imagen1 = ((BitmapDrawable) imgP1.getDrawable()).getBitmap();
-        Bitmap imagen2 = ((BitmapDrawable) imgP2.getDrawable()).getBitmap();
         TextView titulo = (TextView) findViewById(R.id.titulo);
+
+        int imagenP1 = player1;
+        int imagenP2 = player2;
 
         outState.putString("Title", titulo.getText().toString());
         outState.putString("ScoreName", getString(R.string.TextViewPuntuacion));
 
-        outState.putParcelable("image1", imagen1);
-        outState.putParcelable("image2", imagen2);
+        outState.putInt("image1", imagenP1);
+        outState.putInt("image2", imagenP2);
 
         outState.putInt("Score1", p1Score);
         outState.putInt("Score2", p2Score);
@@ -378,14 +379,36 @@ public class Partida extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bitmap imagen1 = outState.getParcelable("image1");
-        Bitmap imagen2 = outState.getParcelable("image2");
         TextView titulo = (TextView) findViewById(R.id.titulo);
 
         titulo.setText(outState.getString("Title"));
 
-        imgP1.setImageBitmap(imagen1);
-        imgP2.setImageBitmap(imagen2);
+        int imagenP1 = outState.getInt("image1");;
+        int imagenP2 = outState.getInt("image2");;
+
+        switch (imagenP1){
+            case 1:
+                imgP1.setImageResource(R.drawable.piedra);
+                break;
+            case 2:
+                imgP1.setImageResource(R.drawable.papel);
+                break;
+            case 3:
+                imgP1.setImageResource(R.drawable.tijeras);
+                break;
+        }
+
+        switch (imagenP2){
+            case 1:
+                imgP2.setImageResource(R.drawable.piedra);
+                break;
+            case 2:
+                imgP2.setImageResource(R.drawable.papel);
+                break;
+            case 3:
+                imgP2.setImageResource(R.drawable.tijeras);
+                break;
+        }
 
         p1Score = outState.getInt("Score1");
         p2Score = outState.getInt("Score2");

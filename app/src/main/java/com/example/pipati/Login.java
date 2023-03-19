@@ -114,6 +114,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
                     Intent intent = new Intent(Login.this, MenuPrincipal.class);
                     intent.putExtra("user", username);
                     startActivity(intent);
+                    //finish();
 
                 // En caso contrario se muestra un mensaje toast de error
                 } else {

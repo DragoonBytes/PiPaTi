@@ -6,79 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textTitulo"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="@string/TextViewTitulo"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputUsuario"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginVertical="10dp"
-                    android:hint="@string/EditTextUsuario"></com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputContrasenia"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="textPassword"
-                    android:hint="@string/EditTextContraseña"></com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginVertical="20dp"
             android:orientation="vertical">
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="300dp"
+            <TextView
+                android:id="@+id/textTitulo"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="@string/TextViewTitulo"
+                android:textAlignment="center"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputUsuario"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginVertical="10dp"
+                        android:hint="@string/EditTextUsuario"></com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputContrasenia"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:inputType="textPassword"
+                        android:hint="@string/EditTextContraseña"></com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/BtnInciarSesion"/>
-            <Button
-                android:id="@+id/btnRegistro"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/BtnRegistrarse"/>
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnInciarSesion"/>
+                <Button
+                    android:id="@+id/btnRegistro"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/BtnRegistrarse"/>
+            </LinearLayout>
         </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
