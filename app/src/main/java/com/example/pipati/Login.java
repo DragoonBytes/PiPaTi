@@ -205,6 +205,7 @@ public class Login extends AppCompatActivity implements SharedPreferences.OnShar
         editTextPass.setText(outState.getString("Password"));
     }
 
+    // Cuando se destruye la actividad se desactiva el listener
     @Override
     protected void onDestroy() {
         super.onDestroy();

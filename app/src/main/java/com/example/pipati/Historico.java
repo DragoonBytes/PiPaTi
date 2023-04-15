@@ -42,6 +42,8 @@ public class Historico extends AppCompatActivity {
         // Obtenemos las preferencias
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Si hay cambios en las preferencias se actualizara
         sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
